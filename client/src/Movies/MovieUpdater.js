@@ -9,9 +9,9 @@ const MovieUpdater = (props) => {
         console.log("handle submit has been triggered");
     }
 
-    const handleChange = () => {
+    const handleChange = (e) => {
         console.log("handle change has been triggered");
-
+        setAlteredMovie({...alteredMovie, [e.target.name]: e.target.value});
     }
 
     return (
