@@ -7,6 +7,15 @@ const MovieUpdater = (props) => {
 
     const handleSubmit = () => {
         console.log("handle submit has been triggered");
+        /*do an axios post to change the entry in the server via the API */
+        axios
+            .put(`http://localhost:5000/api/movies/${props.movie.id}`, alteredMovie)
+            .then(res => {
+                alert("changes have been submitted to the server");
+            })
+            .catch(err => {
+                alert(err);
+            })
     }
 
     const handleChange = (e) => {
@@ -15,16 +24,16 @@ const MovieUpdater = (props) => {
     }
 
     return (
-        <form obSubmit={handleSubmit}>
-            Title: <input type="text" name="title" value={props.movie.title} onChange={handleChange}/>
-            Director: <input type="text" name="director" value={props.movie.director} onChange={handleChange}/>
-            Metascore: <input type="text" name="metascore" value={props.movie.metascore} onChange={handleChange}/>
-            {props.movie.stars.map(star => {
+        <form onSubmit={handleSubmit}>
+            Title: <input type="text" name="title" value={alteredMovie.title} onChange={handleChange}/>
+            Director: <input type="text" name="director" value={alteredMovie.director} onChange={handleChange}/>
+            Metascore: <input type="text" name="metascore" value={alteredMovie.metascore} onChange={handleChange}/>
+            {alteredMovie.stars.map(star => {
                 return (
                     <div>
-                        Star {props.movie.stars.indexOf(star)}:
+                        Star {alteredMovie.stars.indexOf(star)}:
                         <input type="text"
-                               id={props.movie.stars.indexOf(star)}
+                               id={alteredMovie.stars.indexOf(star)}
                                value={star}
                                onChange={handleChange}/>
                     </div>
