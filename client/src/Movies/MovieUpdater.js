@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
 const MovieUpdater = (props) => {
+
+    const [alteredMovie, setAlteredMovie] = useState(props.movie);
 
     const handleSubmit = () => {
         console.log("handle submit has been triggered");
@@ -9,6 +11,7 @@ const MovieUpdater = (props) => {
 
     const handleChange = () => {
         console.log("handle change has been triggered");
+
     }
 
     return (
@@ -20,11 +23,11 @@ const MovieUpdater = (props) => {
                 return (
                     <div>
                         Star {props.movie.stars.indexOf(star)}:
-                    <input type="text"
-                           id={props.movie.stars.indexOf(star)}
-                           value={star}
-                           onChange={handleChange}/>
-                           </div>
+                        <input type="text"
+                               id={props.movie.stars.indexOf(star)}
+                               value={star}
+                               onChange={handleChange}/>
+                    </div>
                 )
             })}
             <button>Submit Changes</button>
